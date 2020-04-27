@@ -1,16 +1,3 @@
-/*
-1. 집합 생성
-    - 중복 안되는 것에 주의
-2. 원소 생성
-3. 원소 삭제
-4. 집합 원소들 얻기
-5. 원소 존재유무
-6. 집합의 크기
-7. 집합 비교
-    - 동일
-    - 부분집합
-8. 집합 연산.
-*/
 class MySet {
     constructor(...values) {
         this.values = [];
@@ -40,46 +27,36 @@ class MySet {
     delete(value) {
         const index = this.values.indexOf(value);
         if  (index === -1) {
-            return
+            return;
         }
         this.values.splice(index,1);
     }
 
     isEqual(set) {
-        this.values.sort((a, b) => a - b);
-        set.values.sort((a, b) => a - b);
-
-        for (let i = 0; i < this.size(); i++) {
-            if(this.values[i] !== set.values[i]) {
-                return false;
-            }
-        }
-        
-        return true;
+        return this.values.every(v => set.include(v));
     }
 
     isSubsetOf(set) {
-        if (set.size() === 0 || this.size() === 0) {
+        if (this.size() === 0) {
+          return true;
+        }
+
+        if (set.size() === 0) {
           return false;
         }
 
-        set.values.sort((a, b) => a - b);
-        this.values.sort((a, b) =>  a - b);
-
-        for (let i = 0; i < this.size(); i++) {
-            if (!set.values.includes(this.values[i])) {
-                return false;
-            }
+        if (this.size() > set.size()) {
+          return false;
         }
 
-        return true;
+        return this.values.every(v => set.include(v));
     }
 
     intersection(set) {
         const intersection = [];
 
         set.values.forEach(v => {
-            if (this.values.includes(v)) {
+            if (this.include(v)) {
                 intersection.push(v);
             }
         });
@@ -114,7 +91,7 @@ class MySet {
 }
 
 describe('set', () => {
-    test('makeSet', () => {
+    test('make Set', () => {
         
         const set = new MySet(1,2,3,4,5);
         expect(set.getValues()).toEqual([1,2,3,4,5]);
@@ -161,7 +138,7 @@ describe('set', () => {
         expect(set1.isEqual(set2)).toBeTruthy();
         
         set1.add(3);
-        expect(set1.isEqual(set2)).toBeFalsy();
+        expect(set2.isEqual(set1)).toBeTruthy();
 
         set2.add(2);
         expect(set1.isEqual(set2)).toBeFalsy();
@@ -181,6 +158,10 @@ describe('set', () => {
 
         set2.delete(3);
         expect(set1.isSubsetOf(set2)).toBeFalsy();
+
+        const set3 = new MySet(1, 2, 3, 4, 5, 6, 7);
+        const set4 = new MySet(1, 3, 5, 7);
+        expect(set4.isSubsetOf(set3)).toBeTruthy();
     });
 
     test('intersection', () => {
