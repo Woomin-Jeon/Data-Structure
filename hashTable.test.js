@@ -1,7 +1,7 @@
 class HashTable {
     constructor(size) {
         this.size = size;
-        this.buckets = Array(size).fill([]);
+        this.buckets = Array(size).fill(null).map(v => []);
     }
 
     hash(key) {
@@ -44,12 +44,9 @@ class HashTable {
     }
     
     getKeys() {
-        let keys = [];
-        this.buckets.forEach(bucket => {
-            keys = [...bucket.map(node => node.key)];
-        });
-
-        return keys;
+        return this.buckets
+            .map(bucket => bucket.map(({key}) => key))
+            .reduce((acc, cur) => [...acc, ...cur]);
     }
 }
 

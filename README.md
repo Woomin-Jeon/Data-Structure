@@ -9,3 +9,4 @@
 5. [Quick Sort](./quickSort.test.js)
 6. [Binary Search](./binarySearch.test.js)
 7. [HashTable](./hashTable.test.js)
+8. [Set](./set.test.js)
