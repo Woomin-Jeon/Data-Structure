@@ -1,12 +1,3 @@
-/*
-이해한것 
-- addVertex : this.vertices에 vertex를 추가한다
-- addEdge : this.edges에 edge를 추가할것인데 형식은 "A에 B가 연결되어있다" [{"이태원": 한강진, 녹사평}]
-- addDirectedEdge : 방향이있는 연결 방향이 있는 쪽으로만 갈 수 있다.
-- hasVertex: 버텍스가 있는지 확인한다.
-- isConnected: 연결되어있는지 확인한다.
-- getGragh: 연결상태를 반환한다.
-*/
 class Graph {
   constructor() {
     this.edges = {};
