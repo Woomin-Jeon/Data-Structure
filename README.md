@@ -12,3 +12,4 @@
 8. [Set](./set.test.js)
 9. [Breadth First Search](./breadthFirstSearch.test.js)
 10. [Depth First Search](./depthFirstSearch.test.js)
+11. [Topological Sort](./topologicalSort.test.js)
