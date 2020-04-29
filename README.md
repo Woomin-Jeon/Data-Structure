@@ -10,3 +10,5 @@
 6. [Binary Search](./binarySearch.test.js)
 7. [HashTable](./hashTable.test.js)
 8. [Set](./set.test.js)
+9. [Breadth First Search](./breadthFirstSearch.test.js)
+10. [Depth First Search](./depthFirstSearch.test.js)

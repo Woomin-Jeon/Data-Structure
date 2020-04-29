@@ -57,17 +57,22 @@ class Graph {
 
     if (!this.edges[from]) {
       this.edges[from] = [to];
+      if (!this.vertices.includes(from)) {
+        this.vertices.push(from);
+      }
       return;
     }
 
     this.edges[from].push(to);
+    if (!this.vertices.includes(from)) {
+      this.vertices.push(from);
+    }
   }
 
   getGragh() {
     return this.vertices.map(v => `${v} => ${this.edges[v]}`);
   }
 }
-
 
 describe('Graph', () => {
   test('addVertex', () => {
@@ -131,3 +136,5 @@ describe('Graph', () => {
     ]);
   });
 });
+
+module.exports = Graph;
