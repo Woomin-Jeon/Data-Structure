@@ -80,3 +80,5 @@ describe('depthFirstSearch', () => {
     });
   });
 });
+
+module.exports = DepthFirstSearch;
