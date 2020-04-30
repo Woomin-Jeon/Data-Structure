@@ -128,6 +128,14 @@ test('shortestPath', () => {
     graph.addDirectedEdge(from, to);
   });
 
+  /*
+    B - C
+   / \ / \
+  A   E - G
+   \ / \ /
+    D - F
+  */
+
   expect(graph.shortestPath('A', 'E')).toEqual(['A', 'B', 'E']);
   expect(graph.shortestPath('A', 'C')).toEqual(['A', 'B', 'C']);
   expect(graph.shortestPath('A', 'G')).toEqual(['A', 'B', 'E', 'G']);
