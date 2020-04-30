@@ -13,3 +13,4 @@
 9. [Breadth First Search](./breadthFirstSearch.test.js)
 10. [Depth First Search](./depthFirstSearch.test.js)
 11. [Topological Sort](./topologicalSort.test.js)
+12. [Shortest Path](./shortestPath.test.js)

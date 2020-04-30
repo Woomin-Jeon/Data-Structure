@@ -1,6 +1,6 @@
 const Graph = require('./graph.test.js');
 
-class BreadthFirstSearch extends Graph{
+class BreadthFirstSearch extends Graph {
   constructor() {
     super();
     this.bfsQueue = [];
