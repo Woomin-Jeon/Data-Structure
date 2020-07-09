@@ -1,65 +1,73 @@
 const DoublyLinkedList = require('./doublyLinkedList.test.js');
 
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.prev = null;
+    this.next = null;
+  }
+
+  setPrev(prev) {
+    this.prev = prev;
+  }
+
+  setNext(next) {
+    this.next = next;
+  }
+
+  getValue() {
+    return this.value;
+  }
+}
+
 class Stack extends DoublyLinkedList {
   constructor() {
     super();
   }
-  
-  peek() {
-    return this.tail.value;
+
+  push(node) {
+    node.prev = this.tail;
+    this.tail = node;
   }
 
-  push(value) {
-    this.append(value);
+  peek() {
+    return this.tail;
   }
 
   pop() {
-    this.head.prev = null;
-    const value = this.tail.value;
+    const lastNode = this.tail;
 
-    if(this.tail.prev) {
-      this.tail = this.tail.prev;
-    } else {
-      this.tail = null;
-      this.head = null;
+    if (!lastNode) {
+      return null;
     }
 
-    if (this.tail) {
-      this.tail.next = null;
-    }
-    return value;
-  }
+    this.tail = lastNode.prev;
 
-  isEmptyValue() {
-    return !this.tail.value
+    return lastNode;
   }
 }
 
 test('push', () => {
   const stack = new Stack();
-  stack.push(1);
-  stack.push(2);
+  stack.push(new Node(1));
+  stack.push(new Node(2));
 
-  expect(stack.peek()).toBe(2);
+  expect(stack.peek().getValue()).toBe(2);
 });
 
 test('pop', () => {
   const stack = new Stack();
-  stack.push(1);
+  stack.push(new Node(1));
+  stack.push(new Node(2));
 
-  expect(stack.pop()).toBe(1);
+  expect(stack.pop().getValue()).toBe(2);
+  expect(stack.pop().getValue()).toBe(1);
 });
 
 test('isEmpty', () => {
   const stack = new Stack();
   expect(stack.isEmpty()).toBe(true);
-})
-
-
-test('isEmptyValue', () => {
-  const stack = new Stack();
-  expect(stack.isEmpty()).toBe(true);
-})
+});
 
 module.exports = Stack;
  
