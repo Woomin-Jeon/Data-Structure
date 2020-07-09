@@ -1,13 +1,33 @@
 const Stack = require('./stack.test.js');
 
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.prev = null;
+    this.next = null;
+  }
+
+  setPrev(prev) {
+    this.prev = prev;
+  }
+
+  setNext(next) {
+    this.next = next;
+  }
+
+  getValue() {
+    return this.value;
+  }
+}
+
 class Queue {
   constructor() {
     this.enqueueStack = new Stack();
     this.dequeueStack = new Stack();
   }
   
-  enqueue(value) {
-      this.enqueueStack.push(value);
+  enqueue(node) {
+      this.enqueueStack.push(node);
   }
 
   dequeue() {
@@ -19,7 +39,7 @@ class Queue {
   }
 
   transferValues() {
-    while (!this.enqueueStack.isEmpty()) {
+    while (!this.enqueueStack.isEmpty()) {      
       this.dequeueStack.push(this.enqueueStack.pop());
     }
   }
@@ -28,17 +48,17 @@ class Queue {
 test('dequeue', () => {
   const queue = new Queue();
 
-  queue.enqueue(1);
-  queue.enqueue(2);
-  queue.enqueue(3);
-  queue.enqueue(4);
+  queue.enqueue(new Node(1));
+  queue.enqueue(new Node(2));
+  queue.enqueue(new Node(3));
+  queue.enqueue(new Node(4));
 
-  expect(queue.dequeue()).toBe(1);
-  expect(queue.dequeue()).toBe(2);
-  expect(queue.dequeue()).toBe(3);
+  expect(queue.dequeue().getValue()).toBe(1);
+  expect(queue.dequeue().getValue()).toBe(2);
+  expect(queue.dequeue().getValue()).toBe(3);
 
-  queue.enqueue(5);
+  queue.enqueue(new Node(5));
 
-  expect(queue.dequeue()).toBe(4);
-  expect(queue.dequeue()).toBe(5);
+  expect(queue.dequeue().getValue()).toBe(4);
+  expect(queue.dequeue().getValue()).toBe(5);
 });
