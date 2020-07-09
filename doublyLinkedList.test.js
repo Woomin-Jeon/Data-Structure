@@ -51,7 +51,7 @@ class DoublyLinkedList {
   }
 
   isEmpty() {
-    return !this.head;
+    return !this.head && !this.tail;
   }
 
   has(value) {
